@@ -1,0 +1,30 @@
+{
+  "name": "my-thrift-store",
+  "version": "1.0.0",
+  "description": "Thrift/Streetwear E-commerce Store",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "next": "^15.1.3",
+    "@supabase/supabase-js": "^2.39.0",
+    "zustand": "^4.4.7",
+    "lucide-react": "^0.460.0",
+    "typescript": "^5.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.0",
+    "postcss": "^8.4.40",
+    "autoprefixer": "^10.4.20",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3"
+  }
+}
