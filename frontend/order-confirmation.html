@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - ThriftStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="logo">ThriftStore</a>
+                    <div class="nav-links">
+                        <a href="index.html">Home</a>
+                        <a href="collections.html">Shop</a>
+                        <a href="admin.html">Admin</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Success Message -->
+    <section class="confirmation">
+        <div class="container">
+            <div class="confirmation-content">
+                <div class="success-icon">✓</div>
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for your purchase. Your order has been received.</p>
+            </div>
+
+            <!-- Order Details -->
+            <div class="order-details">
+                <div class="detail-row">
+                    <div>
+                        <h3>Order Number</h3>
+                        <p class="order-number" id="orderNumber"></p>
+                    </div>
+                    <div>
+                        <h3>Order Date</h3>
+                        <p id="orderDate"></p>
+                    </div>
+                    <div>
+                        <h3>Order Status</h3>
+                        <p class="order-status" id="orderStatus">Pending</p>
+                    </div>
+                    <div>
+                        <h3>Total Amount</h3>
+                        <p class="order-total" id="orderTotal"></p>
+                    </div>
+                </div>
+
+                <!-- Items -->
+                <div class="order-items">
+                    <h2>Items Ordered</h2>
+                    <div id="itemsList"></div>
+                </div>
+
+                <!-- Shipping Info -->
+                <div class="shipping-info" id="shippingInfo"></div>
+
+                <!-- Next Steps -->
+                <div class="next-steps">
+                    <h2>What Happens Next?</h2>
+                    <ol>
+                        <li><strong>Confirmation Email:</strong> Check your email for order confirmation</li>
+                        <li><strong>Processing:</strong> Your order will be processed within 24 hours</li>
+                        <li><strong>Shipping:</strong> You'll receive a shipping confirmation with tracking details</li>
+                        <li><strong>Delivery:</strong> Orders typically arrive within 3-5 business days</li>
+                    </ol>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="confirmation-cta">
+                    <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+                    <a href="javascript:void(0)" class="btn btn-secondary" onclick="window.location.href='mailto:support@thriftstore.in'">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>ThriftStore</h3>
+                    <p>Premium curated thrift and streetwear collection from around the world.</p>
+                </div>
+                <div>
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collections.html?cat=jackets">Jackets</a></li>
+                        <li><a href="collections.html?cat=jerseys">Jerseys</a></li>
+                        <li><a href="collections.html?cat=shirts">Shirts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>support@thriftstore.in</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ThriftStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/order-confirmation.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ThriftStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="logo">ThriftStore</a>
+                    <div class="nav-links">
+                        <a href="index.html">Home</a>
+                        <a href="collections.html">Shop</a>
+                        <a href="admin.html">Admin</a>
+                    </div>
+                    <button class="cart-toggle" id="cartToggle">
+                        🛒 <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Checkout -->
+    <section class="checkout">
+        <div class="container">
+            <h1>Checkout</h1>
+            <div class="checkout-grid">
+                <!-- Form -->
+                <div class="checkout-form">
+                    <form id="checkoutForm">
+                        <h2>Shipping Address</h2>
+                        
+                        <div class="form-row">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <input type="text" name="address" placeholder="Street Address" required>
+
+                        <div class="form-row">
+                            <input type="text" name="city" placeholder="City" required>
+                            <input type="text" name="state" placeholder="State" required>
+                        </div>
+
+                        <input type="text" name="zipcode" placeholder="ZIP Code" required>
+
+                        <!-- Payment Info -->
+                        <h2 style="margin-top: 30px;">Payment Method</h2>
+                        <div class="payment-info">
+                            <p>⚠️ Demo Mode: In production, integrate with Razorpay, Stripe, or your preferred payment gateway.</p>
+                            <label>
+                                <input type="radio" name="payment" value="razorpay" checked>
+                                Razorpay/Stripe (Production)
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Place Order</button>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-items" id="summaryItems">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <div class="summary-totals">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span>Calculated in next step</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="total">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-info">
+                        <p>✓ Free shipping on orders above ₹2000</p>
+                        <p>✓ 14-day returns guarantee</p>
+                        <p>✓ 100% authentic products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>ThriftStore</h3>
+                    <p>Premium curated thrift and streetwear collection from around the world.</p>
+                </div>
+                <div>
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collections.html?cat=jackets">Jackets</a></li>
+                        <li><a href="collections.html?cat=jerseys">Jerseys</a></li>
+                        <li><a href="collections.html?cat=shirts">Shirts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>support@thriftstore.in</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ThriftStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS orders (
   shipping_address JSONB,
   phone TEXT,
   email TEXT,
+  stripe_payment_id TEXT,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 );

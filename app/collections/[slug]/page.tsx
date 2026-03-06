@@ -4,20 +4,21 @@ import { ProductCard } from '@/components/ProductCard'
 export default async function CollectionPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params
   // Fetch category
   const { data: category } = await supabase
     .from('categories')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single()
 
   // Fetch products in category
   const { data: products } = await supabase
     .from('products')
     .select('*')
-    .eq('category', params.slug)
+    .eq('category', slug)
     .order('created_at', { ascending: false })
 
   return (
@@ -25,7 +26,7 @@ export default async function CollectionPage({
       {/* Header */}
       <section className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-5xl font-bold mb-2 capitalize">{category?.name || params.slug}</h1>
+          <h1 className="text-5xl font-bold mb-2 capitalize">{category?.name || slug}</h1>
           <p className="text-gray-300">
             Explore our collection of {category?.name?.toLowerCase()}
           </p>
