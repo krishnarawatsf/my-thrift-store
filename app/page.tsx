@@ -1,57 +1,62 @@
 import { supabase } from '@/lib/supabase'
+import { HeroBanner } from '@/components/HeroBanner'
+import { CollectionsGrid } from '@/components/CollectionsGrid'
+import { ProductCard } from '@/components/ProductCard'
 
 export default async function HomePage() {
-  // Fetch products for homepage
+  // Fetch featured products
   const { data: products } = await supabase
     .from('products')
     .select('*')
     .limit(6)
 
+  // Fetch categories
+  const { data: categories } = await supabase
+    .from('categories')
+    .select('*')
+
+  const collectionsData = (categories || []).map((cat: any) => ({
+    name: cat.name,
+    slug: cat.slug,
+    image: cat.image_url || 'https://via.placeholder.com/500',
+  }))
+
   return (
     <main>
       {/* Hero Banner */}
-      <section className="bg-black text-white py-32 px-6 text-center">
-        <h1 className="text-6xl font-bold mb-4">ThriftStore</h1>
-        <p className="text-xl text-gray-300">Premium curated thrift & streetwear</p>
-      </section>
+      <HeroBanner />
 
       {/* Collections */}
-      <section className="py-12 px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">Collections</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {['Jackets', 'Jerseys', 'Shirts', 'Caps', 'Bottoms', 'Accessories'].map((cat) => (
-            <a
-              key={cat}
-              href={`/collections/${cat.toLowerCase()}`}
-              className="bg-gray-100 h-40 rounded-lg flex items-center justify-center hover:bg-gray-200 transition"
-            >
-              <span className="font-semibold">{cat}</span>
-            </a>
-          ))}
-        </div>
-      </section>
+      <CollectionsGrid collections={collectionsData} />
 
       {/* Featured Products */}
-      <section className="py-12 px-6 bg-gray-50">
-        <h2 className="text-3xl font-bold mb-8 text-center">Featured Products</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {products?.map((product: any) => (
-            <a
-              key={product.id}
-              href={`/products/${product.id}`}
-              className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition"
-            >
-              {product.images?.[0] && (
-                <div className="bg-gray-200 h-64 flex items-center justify-center">
-                  <span className="text-gray-400">Image</span>
-                </div>
-              )}
-              <div className="p-4">
-                <h3 className="font-semibold text-lg">{product.name}</h3>
-                <p className="text-gray-600">₹{product.price}</p>
-              </div>
-            </a>
-          ))}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold mb-4">Featured Products</h2>
+            <p className="text-gray-600">Latest arrivals in our collection</p>
+          </div>
+
+          {products && products.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product: any) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.images?.[0] || 'https://via.placeholder.com/500'}
+                  category={product.category}
+                  stock={product.stock}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-600 mb-4">No products available yet</p>
+              <p className="text-sm text-gray-500">Check back soon for our latest collection</p>
+            </div>
+          )}
         </div>
       </section>
     </main>
