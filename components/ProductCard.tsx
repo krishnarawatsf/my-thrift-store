@@ -86,17 +86,3 @@ export function ProductCard({
     </a>
   )
 }
-        </p>
-        <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-black">
-          {name}
-        </h3>
-        <div className="flex items-center justify-between">
-          <p className="text-lg font-bold text-green-600">₹{price}</p>
-          {stock > 0 && (
-            <p className="text-xs text-gray-500">{stock} in stock</p>
-          )}
-        </div>
-      </div>
-    </a>
-  )
-}
