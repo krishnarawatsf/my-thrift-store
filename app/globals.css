@@ -9,3 +9,89 @@
 body {
   @apply antialiased;
 }
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  @apply bg-black text-white;
+}
+
+/* Link Hover Effects */
+a {
+  @apply transition-colors duration-300;
+}
+
+/* Button Styles */
+button {
+  @apply transition-all duration-300;
+}
+
+/* Input Focus States */
+input:focus {
+  @apply outline-none;
+}
+
+/* Utility Classes */
+.text-gradient {
+  @apply bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent;
+}
+
+.card-shadow {
+  @apply shadow-lg hover:shadow-2xl transition-shadow duration-300;
+}
+
+.btn-primary {
+  @apply bg-black text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply border-2 border-black text-black px-6 py-3 rounded-lg font-bold hover:bg-black hover:text-white transition-all duration-300;
+}
