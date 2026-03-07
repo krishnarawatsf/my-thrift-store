@@ -1,13 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 * {
   @apply box-border;
 }
 
 body {
-  @apply antialiased;
+  @apply antialiased bg-gray-950 text-gray-100;
 }
 
 /* Custom Animations */
@@ -61,7 +59,7 @@ html {
 
 /* Selection Color */
 ::selection {
-  @apply bg-black text-white;
+  @apply bg-gray-700 text-white;
 }
 
 /* Link Hover Effects */
@@ -81,17 +79,17 @@ input:focus {
 
 /* Utility Classes */
 .text-gradient {
-  @apply bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent;
 }
 
 .card-shadow {
-  @apply shadow-lg hover:shadow-2xl transition-shadow duration-300;
+  @apply shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-black/70 transition-shadow duration-300;
 }
 
 .btn-primary {
-  @apply bg-black text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all duration-300;
+  @apply bg-gray-100 text-gray-950 px-6 py-3 rounded-lg font-bold hover:bg-white transition-all duration-300;
 }
 
 .btn-secondary {
-  @apply border-2 border-black text-black px-6 py-3 rounded-lg font-bold hover:bg-black hover:text-white transition-all duration-300;
+  @apply border-2 border-gray-100 text-gray-100 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 hover:text-gray-950 transition-all duration-300;
 }

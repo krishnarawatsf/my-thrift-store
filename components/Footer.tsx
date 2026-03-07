@@ -1,14 +1,16 @@
+import Link from 'next/link'
+
 export function Footer() {
   return (
-    <footer className="bg-black text-white mt-20">
+    <footer className="bg-gray-900 text-gray-100 mt-20 border-t border-gray-800">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-black mb-4">THRIFTELLC</h3>
+            <h3 className="text-2xl font-black mb-4">Thriftellc</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Premium thrift & streetwear collection. Every piece tells a story. Shop authentic vintage and modern classics.
+              Trendy jackets, jerseys, and premium accessories.
             </p>
             {/* Social Links */}
             <div className="flex gap-4 mt-6">
@@ -16,7 +18,7 @@ export function Footer() {
                 href="https://instagram.com/thriftellc.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition text-lg"
+                className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-100 hover:text-gray-950 transition text-lg"
               >
                 📷
               </a>
@@ -24,7 +26,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition text-lg"
+                className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-100 hover:text-gray-950 transition text-lg"
               >
                 𝕏
               </a>
@@ -36,29 +38,29 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">SHOP</h4>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <a href="/collections" className="hover:text-white transition">
-                  All Collections
-                </a>
+                <Link href="/" className="hover:text-gray-100 transition">
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="/collections/jackets" className="hover:text-white transition">
-                  Jackets
-                </a>
+                <Link href="/collections" className="hover:text-gray-100 transition">
+                  Catalog
+                </Link>
               </li>
               <li>
-                <a href="/collections/jerseys" className="hover:text-white transition">
-                  Jerseys
-                </a>
+                <Link href="/contact" className="hover:text-gray-100 transition">
+                  Contact
+                </Link>
               </li>
               <li>
-                <a href="/collections/accessories" className="hover:text-white transition">
-                  Accessories
-                </a>
+                <Link href="/cart" className="hover:text-gray-100 transition">
+                  Cart
+                </Link>
               </li>
               <li>
-                <a href="/collections/new-drop" className="hover:text-white transition font-bold text-green-400">
-                  NEW DROPS ✨
-                </a>
+                <Link href="/collections/new-drop" className="hover:text-gray-100 transition font-bold">
+                  New drop
+                </Link>
               </li>
             </ul>
           </div>
@@ -68,22 +70,22 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">SUPPORT</h4>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link href="/contact" className="hover:text-gray-100 transition">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-gray-100 transition">
                   Shipping Info
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-gray-100 transition">
                   Returns & Refunds
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-gray-100 transition">
                   FAQ
                 </a>
               </li>
@@ -95,22 +97,22 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">LEGAL</h4>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-gray-100 transition">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-black transition">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-black transition">
                   Shipping Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="hover:text-black transition">
                   Contact Information
                 </a>
               </li>
@@ -119,23 +121,21 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 pt-8 mt-8">
+        <div className="border-t border-gray-200 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
-              © 2025 ThriftELLC. All rights reserved.
+            <p className="text-gray-600 text-sm">
+              © {new Date().getFullYear()} Thriftellc
             </p>
-            <div className="flex gap-4 text-sm text-gray-400">
-              <span>💳 Secure Payments</span>
-              <span>🔒 100% Safe</span>
-              <span>🚚 Free Shipping</span>
+            <div className="flex gap-4 text-sm text-gray-500">
+              <span>Payment methods</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Banner */}
-      <div className="bg-gray-900 py-4 text-center text-sm text-gray-400">
-        <p>⭐ Shop with confidence - THRIFTELLC is your destination for premium streetwear</p>
+      <div className="py-4 text-center text-sm text-gray-500">
+        <p>Powered by Next.js</p>
       </div>
     </footer>
   )

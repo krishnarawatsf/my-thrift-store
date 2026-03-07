@@ -1,6 +1,6 @@
 export function NewsletterSection() {
   return (
-    <section className="bg-gradient-to-r from-black to-gray-900 text-white py-16 px-6 my-20">
+    <section className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16 px-6 my-20 border-y border-gray-800">
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="text-4xl font-black mb-4">GET 10% OFF</h2>
         <p className="text-xl text-gray-300 mb-8">
@@ -12,11 +12,11 @@ export function NewsletterSection() {
             type="email"
             placeholder="Enter your email"
             required
-            className="flex-1 px-6 py-4 rounded-lg text-black font-semibold placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition"
+            className="flex-1 px-6 py-4 rounded-lg bg-gray-950 text-gray-100 border border-gray-700 font-semibold placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
           />
           <button
             type="submit"
-            className="bg-white text-black px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105 whitespace-nowrap"
+            className="bg-gray-100 text-gray-950 px-8 py-4 rounded-lg font-bold hover:bg-white transition transform hover:scale-105 whitespace-nowrap"
           >
             SUBSCRIBE
           </button>

@@ -14,7 +14,8 @@ export function CartDrawer() {
       {/* Cart Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-black text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition z-40"
+        className="fixed bottom-6 right-6 bg-gray-100 text-gray-950 p-4 rounded-full shadow-lg hover:bg-white transition z-40"
+        aria-label="Open shopping cart"
       >
         <svg
           className="w-6 h-6"
@@ -46,16 +47,17 @@ export function CartDrawer() {
 
       {/* Drawer Container */}
       <div
-        className={`fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-lg z-50 transform transition-transform duration-300 overflow-y-auto ${
+        className={`fixed right-0 top-0 h-full w-full max-w-md bg-gray-950 shadow-lg z-50 transform transition-transform duration-300 overflow-y-auto border-l border-gray-800 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b p-6 flex items-center justify-between">
-          <h2 className="text-2xl font-bold">Cart</h2>
+        <div className="sticky top-0 bg-gray-900 border-b border-gray-800 p-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-gray-100">Cart</h2>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-gray-500 hover:text-black"
+            className="text-gray-400 hover:text-gray-100 transition"
+            aria-label="Close cart"
           >
             <X size={24} />
           </button>
@@ -65,10 +67,10 @@ export function CartDrawer() {
         <div className="p-6">
           {items.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">Your cart is empty</p>
+              <p className="text-gray-400 mb-4">Your cart is empty</p>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-blue-600 hover:text-blue-800"
+                className="text-gray-300 hover:text-gray-100 transition"
               >
                 Continue Shopping
               </button>
@@ -80,20 +82,20 @@ export function CartDrawer() {
                 {items.map((item) => (
                   <div
                     key={`${item.id}-${item.size}`}
-                    className="flex gap-4 pb-4 border-b"
+                    className="flex gap-4 pb-4 border-b border-gray-800"
                   >
                     {/* Image */}
-                    <div className="w-20 h-20 bg-gray-100 rounded flex-shrink-0 flex items-center justify-center">
-                      <span className="text-xs text-gray-400">No Image</span>
+                    <div className="w-20 h-20 bg-gray-900 rounded flex-shrink-0 flex items-center justify-center border border-gray-800">
+                      <span className="text-xs text-gray-500">No Image</span>
                     </div>
 
                     {/* Details */}
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-sm" title={item.name}>
+                      <h4 className="font-semibold text-sm text-gray-100" title={item.name}>
                         {item.name}
                       </h4>
-                      <p className="text-xs text-gray-600">Size: {item.size}</p>
-                      <p className="font-semibold text-green-600">₹{item.price}</p>
+                      <p className="text-xs text-gray-400">Size: {item.size}</p>
+                      <p className="font-semibold text-green-500">₹{item.price}</p>
 
                       {/* Quantity */}
                       <div className="flex items-center gap-2 mt-2">
@@ -105,16 +107,18 @@ export function CartDrawer() {
                               Math.max(1, item.quantity - 1)
                             )
                           }
-                          className="px-2 py-1 border rounded hover:bg-gray-100"
+                          className="px-2 py-1 border border-gray-800 rounded hover:bg-gray-900 bg-gray-950 text-gray-100 transition"
+                          aria-label="Decrease quantity"
                         >
                           −
                         </button>
-                        <span className="w-8 text-center">{item.quantity}</span>
+                        <span className="w-8 text-center text-gray-100">{item.quantity}</span>
                         <button
                           onClick={() =>
                             updateQuantity(item.id, item.size, item.quantity + 1)
                           }
-                          className="px-2 py-1 border rounded hover:bg-gray-100"
+                          className="px-2 py-1 border border-gray-800 rounded hover:bg-gray-900 bg-gray-950 text-gray-100 transition"
+                          aria-label="Increase quantity"
                         >
                           +
                         </button>
@@ -124,7 +128,7 @@ export function CartDrawer() {
                     {/* Remove */}
                     <button
                       onClick={() => removeItem(item.id, item.size)}
-                      className="text-red-600 hover:text-red-800 text-xs font-semibold"
+                      className="text-red-500 hover:text-red-400 text-xs font-semibold transition"
                     >
                       Remove
                     </button>
@@ -133,25 +137,25 @@ export function CartDrawer() {
               </div>
 
               {/* Total */}
-              <div className="bg-gray-50 p-4 rounded mb-6">
+              <div className="bg-gray-900 border border-gray-800 p-4 rounded mb-6">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-gray-600">Subtotal:</span>
-                  <span className="font-bold">₹{total()}</span>
+                  <span className="text-gray-400">Subtotal:</span>
+                  <span className="font-bold text-gray-100">₹{total()}</span>
                 </div>
                 <div className="flex justify-between items-center mb-4 text-sm">
-                  <span className="text-gray-600">Shipping:</span>
-                  <span className="text-gray-600">Calculated at checkout</span>
+                  <span className="text-gray-400">Shipping:</span>
+                  <span className="text-gray-400">Calculated at checkout</span>
                 </div>
-                <div className="border-t pt-4 flex justify-between items-center">
-                  <span className="font-semibold text-lg">Total:</span>
-                  <span className="font-bold text-xl">₹{total()}</span>
+                <div className="border-t border-gray-800 pt-4 flex justify-between items-center">
+                  <span className="font-semibold text-lg text-gray-100">Total:</span>
+                  <span className="font-bold text-xl text-gray-100">₹{total()}</span>
                 </div>
               </div>
 
               {/* Checkout */}
               <Link
                 href="/checkout"
-                className="w-full bg-black text-white py-3 rounded font-semibold hover:bg-gray-800 transition block text-center mb-2"
+                className="w-full bg-gray-100 text-gray-950 py-3 rounded font-semibold hover:bg-white transition block text-center mb-2"
                 onClick={() => setIsOpen(false)}
               >
                 Checkout
