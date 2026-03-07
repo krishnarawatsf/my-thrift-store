@@ -1,9 +1,8 @@
 import { MetadataRoute } from 'next'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient, isSupabaseConfigured } from '@/lib/supabase'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://thrift-store.vercel.app'
-  const supabase = createServerSupabaseClient()
 
   // Static routes
   const routes = [
@@ -27,34 +26,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Fetch categories for dynamic routes
-  const { data: categories } = await supabase
-    .from('categories')
-    .select('slug, created_at')
-    .order('created_at', { ascending: false })
+  // Only fetch dynamic routes if Supabase is configured
+  if (!isSupabaseConfigured()) {
+    console.warn('Supabase not configured, returning static sitemap only')
+    return routes
+  }
 
-  const categoryRoutes = (categories || []).map((category) => ({
-    url: `${baseUrl}/collections/${category.slug}`,
-    lastModified: new Date(category.created_at),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }))
+  const supabase = createServerSupabaseClient()
 
-  // Fetch products for dynamic routes
-  const { data: products } = await supabase
-    .from('products')
-    .select('id, created_at')
-    .order('created_at', { ascending: false })
-    .limit(1000) // Limit to prevent huge sitemaps
+  try {
+    // Fetch categories for dynamic routes
+    const { data: categories } = await supabase
+      .from('categories')
+      .select('slug, created_at')
+      .order('created_at', { ascending: false })
 
-  const productRoutes = (products || []).map((product) => ({
-    url: `${baseUrl}/products/${product.id}`,
-    lastModified: new Date(product.created_at),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }))
+    const categoryRoutes = (categories || []).map((category) => ({
+      url: `${baseUrl}/collections/${category.slug}`,
+      lastModified: new Date(category.created_at),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
 
-  return [...routes, ...categoryRoutes, ...productRoutes]
+    // Fetch products for dynamic routes
+    const { data: products } = await supabase
+      .from('products')
+      .select('id, created_at')
+      .order('created_at', { ascending: false })
+      .limit(1000) // Limit to prevent huge sitemaps
+
+    const productRoutes = (products || []).map((product) => ({
+      url: `${baseUrl}/products/${product.id}`,
+      lastModified: new Date(product.created_at),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }))
+
+    return [...routes, ...categoryRoutes, ...productRoutes]
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    return routes
+  }
 }
 
 // Revalidate every 24 hours
