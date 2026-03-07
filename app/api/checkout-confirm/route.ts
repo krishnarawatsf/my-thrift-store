@@ -1,9 +1,29 @@
 import { createServerSupabaseClient } from '@/lib/supabase'
 import { stripe } from '@/lib/stripe'
 import { NextResponse } from 'next/server'
+import { apiLimiter } from '@/lib/rate-limit'
 
 export async function POST(req: Request) {
   try {
+    // Rate limiting
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown'
+    const rateLimitResult = apiLimiter.check(ip)
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '30',
+            'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+            'X-RateLimit-Reset': String(rateLimitResult.resetTime),
+          }
+        }
+      )
+    }
+
     const supabase = createServerSupabaseClient()
     const { sessionId } = await req.json()
     if (!sessionId) {

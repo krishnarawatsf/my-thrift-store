@@ -4,12 +4,45 @@ import './globals.css'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'ThriftELLC - Premium Thrift and Streetwear',
+  title: {
+    default: 'ThriftELLC - Premium Thrift and Streetwear',
+    template: '%s | ThriftELLC',
+  },
   description: 'Curated vintage and streetwear collection. Shop authentic jackets, jerseys, and accessories.',
+  keywords: ['thrift store', 'streetwear', 'vintage clothing', 'authentic jerseys', 'secondhand fashion', 'sustainable fashion'],
+  authors: [{ name: 'ThriftELLC' }],
+  creator: 'ThriftELLC',
+  publisher: 'ThriftELLC',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://thrift-store.vercel.app'),
   openGraph: {
-    title: 'ThriftELLC',
-    description: 'Premium thrift & streetwear collection',
     type: 'website',
+    locale: 'en_IN',
+    url: '/',
+    title: 'ThriftELLC - Premium Thrift and Streetwear',
+    description: 'Curated vintage and streetwear collection. Shop authentic jackets, jerseys, and accessories.',
+    siteName: 'ThriftELLC',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ThriftELLC - Premium Thrift and Streetwear',
+    description: 'Curated vintage and streetwear collection. Shop authentic jackets, jerseys, and accessories.',
+    creator: '@thriftellc',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add your verification codes when available
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
   },
 }
 

@@ -85,6 +85,34 @@ export default function ProductPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-12 bg-gray-950">
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.name,
+            description: product.description,
+            image: product.images?.[0] || '',
+            brand: {
+              '@type': 'Brand',
+              name: 'ThriftELLC',
+            },
+            offers: {
+              '@type': 'Offer',
+              price: product.price,
+              priceCurrency: 'INR',
+              availability: product.stock > 0 
+                ? 'https://schema.org/InStock' 
+                : 'https://schema.org/OutOfStock',
+              url: typeof window !== 'undefined' ? window.location.href : '',
+            },
+            category: product.category,
+          }),
+        }}
+      />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Image Gallery */}
         <div className="flex flex-col gap-4">

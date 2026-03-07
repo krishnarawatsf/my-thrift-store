@@ -1,9 +1,29 @@
 import { stripe } from '@/lib/stripe'
 import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase'
+import { checkoutLimiter } from '@/lib/rate-limit'
 
 export async function POST(req: Request) {
   try {
+    // Rate limiting
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown'
+    const rateLimitResult = checkoutLimiter.check(ip)
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: 'Too many checkout attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '5',
+            'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+            'X-RateLimit-Reset': String(rateLimitResult.resetTime),
+          }
+        }
+      )
+    }
+
     const { items, email, shippingAddress, phone } = await req.json()
 
     if (!items || items.length === 0) {
